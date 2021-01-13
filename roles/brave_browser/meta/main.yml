@@ -5,8 +5,7 @@ galaxy_info:
 
   license: MIT
 
-  # Required by ansible.builtin.yum_repository
-  min_ansible_version: 2.1
+  min_ansible_version: 2.10
 
   platforms:
     - name: Fedora
