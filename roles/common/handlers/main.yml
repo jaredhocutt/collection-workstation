@@ -1,0 +1,12 @@
+---
+# handlers file for common
+
+- name: generate_grub_config
+  ansible.builtin.command: grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+  become: yes
+
+- name: restart_networkmanager
+  ansible.builtin.service:
+    name: NetworkManager
+    state: restarted
+  become: yes

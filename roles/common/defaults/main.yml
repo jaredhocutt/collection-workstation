@@ -1,0 +1,10 @@
+---
+# defaults file for common
+
+packages: []
+flatpaks: []
+services: []
+user_services: []
+dconf_settings: []
+
+kernel_install_limit: 3

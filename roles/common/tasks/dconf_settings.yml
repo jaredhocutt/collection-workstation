@@ -1,0 +1,8 @@
+---
+
+- name: Set dconf setting
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ dconf_settings }}"
