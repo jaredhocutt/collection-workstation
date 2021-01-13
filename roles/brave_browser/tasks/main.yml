@@ -1,0 +1,27 @@
+---
+# tasks file for brave_browser
+
+- name: Create yum repository
+  ansible.builtin.yum_repository:
+    name: brave-browser
+    description: Brave Browser - $basearch
+    baseurl: https://brave-browser-rpm-{{ brave_channel }}.s3.brave.com/$basearch
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "{{ brave_gpg_key_url }}"
+    state: present
+  become: yes
+
+- name: Install Brave Browser ({{ brave_channel }})
+  ansible.builtin.dnf:
+    name: brave-browser
+    state: present
+  become: yes
+  when: brave_channel == 'release'
+
+- name: Install Brave Browser ({{ brave_channel }})
+  ansible.builtin.dnf:
+    name: brave-browser-{{ brave_channel }}
+    state: present
+  become: yes
+  when: brave_channel != 'release'

@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Jared Hocutt
+  description: >-
+    Configures the Brave Browser repository and installs the Brave Browser.
+
+  license: MIT
+
+  # Required by ansible.builtin.yum_repository
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: Fedora
+      versions:
+        - 33
+
+  galaxy_tags:
+    - brave
+    - brave-browser
+    - browser
+
+dependencies: []
