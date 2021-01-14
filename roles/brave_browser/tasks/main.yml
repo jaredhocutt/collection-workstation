@@ -12,14 +12,14 @@
     state: present
   become: yes
 
-- name: Install Brave Browser ({{ brave_channel }})
+- name: Install Brave Browser
   ansible.builtin.dnf:
     name: brave-browser
     state: present
   become: yes
   when: brave_channel == 'release'
 
-- name: Install Brave Browser ({{ brave_channel }})
+- name: Install Brave Browser (non-release channel)
   ansible.builtin.dnf:
     name: brave-browser-{{ brave_channel }}
     state: present
