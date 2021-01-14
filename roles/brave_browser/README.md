@@ -12,9 +12,9 @@ Requirements
 Role Variables
 --------------
 
-| Variable      | Required | Default   | Description                                                                |
-| ------------- | -------- | --------- | -------------------------------------------------------------------------- |
-| brave_channel | &#9989;  | `release` | The channel to use. Possible options are `release`, `beta`, and `nightly`. |
+| Variable        | Required | Default   | Description                                                                |
+| --------------- | -------- | --------- | -------------------------------------------------------------------------- |
+| `brave_channel` | &#9989;  | `release` | The channel to use. Possible options are `release`, `beta`, and `nightly`. |
 
 Dependencies
 ------------
