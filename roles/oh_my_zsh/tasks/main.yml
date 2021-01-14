@@ -1,0 +1,24 @@
+---
+# tasks file for oh_my_zsh
+
+- name: Install required packages
+  ansible.builtin.dnf:
+    name:
+      - git
+      - zsh
+      - util-linux-user
+    state: present
+  become: yes
+
+- name: Clone oh-my-zsh repo
+  ansible.builtin.git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+    force: yes
+    update: no
+    accept_hostkey: yes
+
+- name: Change shell to zsh
+  ansible.builtin.command: chsh -s /bin/zsh {{ ansible_user_id }}
+  when: "'zsh' not in ansible_user_shell"
+  become: yes
