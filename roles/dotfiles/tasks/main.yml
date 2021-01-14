@@ -1,0 +1,21 @@
+---
+# tasks file for dotfiles
+
+- name: Install required packages
+  ansible.builtin.dnf:
+    name:
+      - git
+      - stow
+      - xclip
+    state: present
+  become: yes
+
+- name: Clone dotfiles repo
+  ansible.builtin.git:
+    repo: git@github.com:jaredhocutt/dotfiles.git
+    dest: ~/.dotfiles
+    update: yes
+    accept_hostkey: yes
+
+- include_tasks: enable.yml
+  loop: "{{ dotfiles_enabled }}"

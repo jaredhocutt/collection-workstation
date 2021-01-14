@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Jared Hocutt (@jaredhocutt)
+  description: >-
+    Installs dotfiles repository and enables the specified sets of dotfiles.
+
+  license: MIT
+
+  min_ansible_version: 2.10
+
+  platforms:
+    - name: Fedora
+      versions:
+        - 33
+
+  galaxy_tags:
+    - dotfiles
+
+dependencies: []

@@ -1,0 +1,10 @@
+---
+
+- name: Check for {{ item.dotfile }}
+  ansible.builtin.stat:
+    path: '{{ item.dotfile }}'
+  register: r_dotfile_check
+
+- name: Enable {{ item.name }} dotfiles
+  ansible.builtin.command: ~/.dotfiles/enable.sh {{ item.name }}
+  when: r_dotfile_check.stat.exists == False
