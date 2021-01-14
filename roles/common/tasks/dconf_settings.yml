@@ -1,5 +1,14 @@
 ---
 
+- name: Install required packages for dconf module
+  ansible.builtin.dnf:
+    name:
+      - dconf
+      - dbus-tools
+      - dbus-daemon
+    state: present
+  become: yes
+
 - name: Set dconf setting
   community.general.dconf:
     key: "{{ item.key }}"
