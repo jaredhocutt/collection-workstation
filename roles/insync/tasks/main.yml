@@ -1,0 +1,19 @@
+---
+# tasks file for insync
+
+- name: Create yum repository
+  ansible.builtin.yum_repository:
+    name: insync
+    description: Insync - Fedora $releasever
+    baseurl: http://yum.insync.io/fedora/$releasever/
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+    state: present
+  become: yes
+
+- name: Install Insync
+  ansible.builtin.dnf:
+    name: insync
+    state: present
+  become: yes
