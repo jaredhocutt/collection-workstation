@@ -1,7 +1,7 @@
 galaxy_info:
   author: Jared Hocutt (@jaredhocutt)
   description: >-
-    Installs Insync.
+    Configures the Insync repository and Installs Insync.
 
   license: MIT
 

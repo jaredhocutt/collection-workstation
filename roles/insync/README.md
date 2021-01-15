@@ -1,7 +1,7 @@
 Insync
 =========
 
-Installs Insync.
+Configures the Insync repository and Installs Insync.
 
 Requirements
 ------------
