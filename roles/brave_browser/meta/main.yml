@@ -1,7 +1,7 @@
 galaxy_info:
   author: Jared Hocutt (@jaredhocutt)
   description: >-
-    Configures the Brave Browser repository and installs the Brave Browser.
+    Configures the Brave Browser repository and installs Brave Browser.
 
   license: MIT
 

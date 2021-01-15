@@ -1,7 +1,7 @@
 Brave Browser
 =============
 
-Configures a yum repository and installs the Brave Browser.
+Configures the Brave Browser repository and installs Brave Browser.
 
 Requirements
 ------------
