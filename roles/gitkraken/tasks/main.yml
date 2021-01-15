@@ -1,0 +1,15 @@
+---
+# tasks file for gitkraken
+
+- name: Check if GitKraken is already installed
+  ansible.builtin.stat:
+    path: /usr/bin/gitkraken
+  register: r_gitkraken_check_installed
+
+- name: Install GitKraken
+  ansible.builtin.dnf:
+    name: https://release.gitkraken.com/linux/gitkraken-amd64.rpm
+    disable_gpg_check: yes
+    state: present
+  become: yes
+  when: not r_gitkraken_check_installed.stat.exists
