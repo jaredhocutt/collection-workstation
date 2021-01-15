@@ -1,0 +1,6 @@
+---
+# defaults file for ferdi
+
+ferdi_version: latest
+
+ferdi_rpm_filename: ferdi-{{ ferdi_version | regex_replace('^v', '') }}.x86_64.rpm

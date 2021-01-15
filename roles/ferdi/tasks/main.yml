@@ -1,0 +1,26 @@
+---
+# tasks file for ferdi
+
+- block:
+    - name: Get latest release of Ferdi
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/getferdi/ferdi/releases/latest
+      register: r_ferdi_latest_release
+
+    - name: Set ferdi_version to latest release
+      ansible.builtin.set_fact:
+        ferdi_version: "{{ r_ferdi_latest_release.json.tag_name }}"
+  when: ferdi_version == 'latest'
+
+- name: Check if Ferdi is already installed
+  ansible.builtin.stat:
+    path: /opt/Ferdi/ferdi
+  register: r_ferdi_check_installed
+
+- name: Install Ferdi
+  ansible.builtin.dnf:
+    name: https://github.com/getferdi/ferdi/releases/download/v5.5.0/{{ ferdi_rpm_filename }}
+    disable_gpg_check: yes
+    state: present
+  become: yes
+  when: r_ferdi_check_installed.stat.exists == False
