@@ -1,0 +1,62 @@
+---
+# tasks file for restic
+
+- name: Install Restic
+  ansible.builtin.dnf:
+    name: restic
+    state: present
+  become: yes
+
+- name: Initialize Restic repos
+  ansible.builtin.command: /usr/bin/restic --repo {{ item.repo }} init
+  environment: "{{ item.env_vars }}"
+  loop: "{{ restic_repos }}"
+  register: r_restic_init
+  failed_when:
+    - r_restic_init.rc != 0
+    - "'already exists' not in r_restic_init.stderr"
+  changed_when: r_restic_init.rc == 0
+  become: yes
+
+- name: Create Restic services
+  ansible.builtin.template:
+    src: restic.service.j2
+    dest: /etc/systemd/system/restic-{{ item.name }}.service
+    owner: root
+    group: root
+    mode: 0600
+  vars:
+    name: "{{ item.name }}"
+    env_vars: "{{ item.env_vars | default([]) }}"
+    restic_repo: "{{ item.repo }}"
+    restic_flags: "{{ item.restic_flags | default([]) }}"
+    restic_files: "{{ item.files }}"
+  loop: "{{ restic_repos }}"
+  register: r_restic_service
+  become: yes
+
+- name: Create Restic timers
+  ansible.builtin.template:
+    src: restic.timer.j2
+    dest: /etc/systemd/system/restic-{{ item.name }}.timer
+    owner: root
+    group: root
+    mode: 0644
+  vars:
+    name: "{{ item.name }}"
+  loop: "{{ restic_repos }}"
+  register: r_restic_timer
+  become: yes
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  when: r_restic_service.changed or r_restic_timer.changed
+  become: yes
+
+- name: Enable the Restic timer
+  ansible.builtin.systemd:
+    name: restic-{{ item.name }}.timer
+    enabled: yes
+  loop: "{{ restic_repos }}"
+  become: yes

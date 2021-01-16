@@ -1,0 +1,10 @@
+
+[Unit]
+Description=Perform restic backup [{{ name }}]
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
