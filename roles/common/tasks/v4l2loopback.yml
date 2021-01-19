@@ -1,0 +1,21 @@
+---
+
+- name: Create yum repository
+  ansible.builtin.yum_repository:
+    name: v4l2loopback
+    description: v4l2loopback - Fedora $releasever - $basearch [copr]
+    baseurl: https://download.copr.fedorainfracloud.org/results/sentry/v4l2loopback/fedora-$releasever-$basearch/
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.copr.fedorainfracloud.org/results/sentry/v4l2loopback/pubkey.gpg
+    state: present
+  become: yes
+
+- name: Install v4l2loopback
+  ansible.builtin.dnf:
+    name:
+      - v4l2loopback
+      - v4l2loopback-dkms
+    state: present
+  become: yes
+

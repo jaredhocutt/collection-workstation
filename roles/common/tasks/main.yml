@@ -13,6 +13,9 @@
 - ansible.builtin.import_tasks: services.yml
   tags: [services]
 
+- ansible.builtin.import_tasks: v4l2loopback.yml
+  tags: [v4l2loopback]
+
 - ansible.builtin.import_tasks: grub.yml
   tags: [grub]
 
