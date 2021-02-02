@@ -2,7 +2,7 @@ namespace: jaredhocutt
 name: workstation
 description: A collection of roles used to bootstrap my workstations
 
-version: 1.0.0
+version: 1.0.1
 
 dependencies:
   community.general: "*"
