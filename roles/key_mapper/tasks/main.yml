@@ -1,0 +1,16 @@
+---
+# tasks file for key_mapper
+
+- name: Install Key Mapper
+  ansible.builtin.pip:
+    name: git+https://github.com/sezanzeb/key-mapper.git@{{ key_mapper_version }}
+    state: present
+  become: yes
+
+- name: Start and enable Key Mapper
+  ansible.builtin.service:
+    name: key-mapper.service
+    scope: system
+    state: started
+    enabled: yes
+  become: yes
