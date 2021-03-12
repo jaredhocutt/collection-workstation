@@ -1,0 +1,7 @@
+
+---
+
+- name: Install homebrew packages
+  community.general.homebrew:
+    name: "{{ packages }}"
+    state: present

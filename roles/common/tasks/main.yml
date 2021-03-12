@@ -29,3 +29,8 @@
     - ansible.builtin.import_tasks: dconf_settings.yml
       tags: [dconf]
   when: ansible_os_family == "RedHat"
+
+- block:
+    - ansible.builtin.import_tasks: homebrew.yml
+      tags: [homebrew]
+  when: ansible_os_family == "Darwin"
