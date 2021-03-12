@@ -6,3 +6,9 @@
     name: "{{ item }}"
     state: present
   loop: "{{ packages }}"
+
+- name: Install homebrew casks
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ casks }}"
