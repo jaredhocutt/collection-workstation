@@ -1,29 +1,31 @@
 ---
 # tasks file for common
 
-- ansible.builtin.import_tasks: selinux.yml
-  tags: [selinux]
+- block:
+    - ansible.builtin.import_tasks: selinux.yml
+      tags: [selinux]
 
-- ansible.builtin.import_tasks: packages.yml
-  tags: [packages]
+    - ansible.builtin.import_tasks: packages.yml
+      tags: [packages]
 
-- ansible.builtin.import_tasks: flatpaks.yml
-  tags: [flatpaks]
+    - ansible.builtin.import_tasks: flatpaks.yml
+      tags: [flatpaks]
 
-- ansible.builtin.import_tasks: services.yml
-  tags: [services]
+    - ansible.builtin.import_tasks: services.yml
+      tags: [services]
 
-- ansible.builtin.import_tasks: v4l2loopback.yml
-  tags: [v4l2loopback]
+    - ansible.builtin.import_tasks: v4l2loopback.yml
+      tags: [v4l2loopback]
 
-- ansible.builtin.import_tasks: grub.yml
-  tags: [grub]
+    - ansible.builtin.import_tasks: grub.yml
+      tags: [grub]
 
-- ansible.builtin.import_tasks: display.yml
-  tags: [display]
+    - ansible.builtin.import_tasks: display.yml
+      tags: [display]
 
-- ansible.builtin.import_tasks: networking.yml
-  tags: [networking]
+    - ansible.builtin.import_tasks: networking.yml
+      tags: [networking]
 
-- ansible.builtin.import_tasks: dconf_settings.yml
-  tags: [dconf]
+    - ansible.builtin.import_tasks: dconf_settings.yml
+      tags: [dconf]
+  when: ansible_os_family == "RedHat"
