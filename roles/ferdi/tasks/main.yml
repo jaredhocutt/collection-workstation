@@ -19,7 +19,7 @@
 
 - name: Install Ferdi
   ansible.builtin.dnf:
-    name: https://github.com/getferdi/ferdi/releases/download/v5.5.0/{{ ferdi_rpm_filename }}
+    name: https://github.com/getferdi/ferdi/releases/download/{{ ferdi_version }}/{{ ferdi_rpm_filename }}
     disable_gpg_check: yes
     state: present
   become: yes
