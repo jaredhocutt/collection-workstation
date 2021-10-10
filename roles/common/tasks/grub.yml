@@ -22,7 +22,7 @@
   ansible.builtin.lineinfile:
     path: /etc/sysconfig/grub
     regexp: "^GRUB_GFXMODE="
-    line: GRUB_GFXMODE="1280x720x32,1024x768x32,auto"
+    line: GRUB_GFXMODE="1280x720x24,1024x768x24,auto"
     state: present
   notify: generate_grub_config
   become: yes
