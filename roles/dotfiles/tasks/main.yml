@@ -10,6 +10,14 @@
     state: present
   become: yes
 
+- name: Install required packages
+  community.general.homebrew:
+    name:
+      - git
+      - stow
+      - xclip
+    state: present
+
 - name: Clone dotfiles repo
   ansible.builtin.git:
     repo: git@github.com:jaredhocutt/dotfiles.git
