@@ -9,6 +9,7 @@
       - xclip
     state: present
   become: yes
+  when: ansible_os_family == "RedHat"
 
 - name: Install required packages
   community.general.homebrew:
@@ -17,6 +18,7 @@
       - stow
       - xclip
     state: present
+  when: ansible_os_family == "Darwin"
 
 - name: Clone dotfiles repo
   ansible.builtin.git:
