@@ -9,6 +9,15 @@
       - util-linux-user
     state: present
   become: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Install required packages
+  community.general.homebrew:
+    name:
+      - git
+      - zsh
+    state: present
+  when: ansible_os_family == "Darwin"
 
 - name: Clone oh-my-zsh repo
   ansible.builtin.git:
